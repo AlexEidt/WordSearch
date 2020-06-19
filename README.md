@@ -5,11 +5,11 @@ This program creates Word Searches for you.
 ## Blank Word Search
 
 Blank Word Search | Word Search Partially Filled Out
---- | ---
+:---: | :---:
 <img src="Documentation/WordSearchBlank.PNG" style="width: 50%"> | <img src="Documentation/WordSearchEarth.PNG" style="width: 50%">
-Word Search with Solution Shown | Word Search with Words Reshuffled
+**Word Search with Solution Shown** | **Word Search with Words Reshuffled**
 <img src="Documentation/WordSearchSolution.PNG" style="width: 50%"> | <img src="Documentation/WordSearchSolutionReshuffled.PNG" style="width: 50%">
-Word Search with New Random Words | New Random Words Solution Shown
+**Word Search with New Random Words** | **New Random Words Solution Shown**
 <img src="Documentation/WordSearchNewWords.PNG" style="width: 50%"> | <img src="Documentation/WordSearchNewWordsSolution.PNG" style="width: 50%">
 
 ## Usage
