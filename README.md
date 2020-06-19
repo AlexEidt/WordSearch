@@ -2,6 +2,7 @@
 
 This program creates Word Searches for you.
 
+Images | Images
 --- | ---
 <img src="Documentation/WordSearchBlank.png"> | <img src="Documentation/WordSearchEarth.png">
 <img src="Documentation/WordSearchSolution.png"> | <img src="Documentation/WordSearchSolutionReshuffled.png">
@@ -11,12 +12,15 @@ This program creates Word Searches for you.
 
 `cd` into the directory containing these scripts and run
 <br>
+
 ```
 python console.py
 ```
+
 <br>
 The following is an example of the console output:
 <br>
+
 ```
 Welcome to the WordSearch creator!
 This program creates Word Search Puzzles for you.
