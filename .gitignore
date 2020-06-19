@@ -1,0 +1,6 @@
+# Compiled python modules.
+*.pyc
+
+# Setuptools distribution folder.
+/.vs
+/.vscode
