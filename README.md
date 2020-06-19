@@ -2,14 +2,29 @@
 
 This program creates Word Searches for you.
 
-<p align="center">
-    <img src="Documentation/WordSearchBlank.PNG" style="width: 50%">
-    <img src="Documentation/WordSearchEarth.PNG" style="width: 50%">
-    <img src="Documentation/WordSearchSolution.PNG" style="width: 50%">
-    <img src="Documentation/WordSearchSolutionReshuffled.PNG" style="width: 50%">
-    <img src="Documentation/WordSearchNewWords.PNG" style="width: 50%">
-    <img src="Documentation/WordSearchNewWordsSolution.PNG" style="width: 50%">
-</p>
+## Blank Word Search
+
+<img src="Documentation/WordSearchBlank.PNG" style="width: 50%">
+
+## Word Search Partially Filled Out
+
+<img src="Documentation/WordSearchEarth.PNG" style="width: 50%">
+
+## Word Search with Solution Shown
+
+<img src="Documentation/WordSearchSolution.PNG" style="width: 50%">
+
+## Word Search with Words Reshuffled
+
+<img src="Documentation/WordSearchSolutionReshuffled.PNG" style="width: 50%">
+
+## Word Search with New Random Words
+<img src="Documentation/WordSearchNewWords.PNG" style="width: 50%">
+
+## New Random Words Solution Shown
+
+<img src="Documentation/WordSearchNewWordsSolution.PNG" style="width: 50%">
+
 
 ## Usage
 
@@ -55,3 +70,10 @@ Next Word (Return/Enter to Quit/Stop): Uranus
 Next Word (Return/Enter to Quit/Stop): Neptune
 Next Word (Return/Enter to Quit/Stop):
 ```
+
+## Exporting
+
+The Word Search boards can be exported as a `.html` file containing an `html` table of the Word Search grid, a LaTeX matrix version of the Word Search grid, and the word search grid as a String. The LaTeX grid for the example shown above is shown below:
+<br>
+
+$\begin{matrix}A & M & A & R & S & Q & U & U & U & J & M & O & Z & H & H & D \\ X & C & P & Q & M & U & O & E & L & C & N & E & Z & C & T & Q \\ X & U & N & A & C & K & U & D & E & R & K & A & F & F & M & A \\ Q & X & Y & A & Q & P & T & O & U & R & S & U & M & L & Q & Q \\ B & G & R & V & O & C & S & T & E & Y & W & J & Z & P & M & K \\ B & T & T & E & H & E & A & T & R & F & M & P & U & U & E & Q \\ X & J & G & N & W & S & I & U & Q & B & S & V & B & K & M & V \\ L & U & U & U & Q & P & C & G & W & P & L & B & O & R & P & A \\ D & Y & X & S & U & R & S & P & I & U & R & A & N & U & S & W \\ G & U & W & J & E & I & K & Z & N & H & Q & E & Z & F & G & R \\ K & H & J & M & F & D & L & D & T & M & T & C & H & F & C & F \\ N & E & P & T & U & N & E & R & O & V & Y & T & F & L & S & Z \\ K & P & P & Q & W & Q & A & X & X & T & V & J & D & M & W & V \\ K & M & C & Q & E & E & L & Q & S & C & W & B & C & M & L & M \\ I & W & B & Z & V & S & H & B & O & O & Y & D & W & U & R & N \\ U & H & B & F & X & R & Q & S & H & O & Q & M & D & S & D & H\end{matrix}$
