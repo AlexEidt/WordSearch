@@ -83,7 +83,7 @@ class WordBoard:
         Creates/changes the word labels on the right side of the GUI.
         """
         for label in self.labels.values():
-            label.grid_remove()
+            label.destroy()
         self.labels.clear()
         self.labels = {'Words': tk.Label(self.word_list, text='Words', pady=5, font=tkFont.Font(weight='bold'))}
         self.labels['Words'].grid(row=2, column=0, columnspan=2)
@@ -150,7 +150,7 @@ class WordBoard:
         for i in range(self.size):
             for j in range(self.size):
                 if self.buttons[i][j]:
-                    self.buttons[i][j].grid_remove()
+                    self.buttons[i][j].destroy()
                 self.buttons[i][j] = tk.Button(
                     self.word_grid, text=self.word_search.board[i][j], 
                     padx=5, command=partial(self.pressed, i, j)
