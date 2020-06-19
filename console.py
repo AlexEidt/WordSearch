@@ -1,3 +1,11 @@
+"""
+This script allows the user to start an instance of the WordBoard GUI
+from the command line. The user may also customize their wordboard size,
+color, and which words are put into the word board.
+
+Alex Eidt
+"""
+
 from WordBoard import WordBoard
 
 def main():
@@ -7,7 +15,7 @@ def main():
     Starts a Word Search Game with the given defaults.
     """
     print('Welcome to the WordSearch creator!')
-    print('This program creates Word Search Puzzles for you.')
+    print('This program creates Word Search Puzzles.')
     print()
     print('The menu has four buttons which perform the following functions:')
     print('\t1. New Words: Generate a new random set of words to search for')

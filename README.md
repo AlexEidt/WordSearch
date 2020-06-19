@@ -1,8 +1,6 @@
 # Word Search
 
-This program creates Word Searches for you.
-
-## Blank Word Search
+This program creates Word Searches.
 
 Blank Word Search | Word Search Partially Filled Out
 :---: | :---:
@@ -25,7 +23,6 @@ python console.py
 
 The following is an example of the console output:
 
-<br>
 <br>
 
 ```
@@ -59,4 +56,9 @@ Next Word (Return/Enter to Quit/Stop):
 
 ## Exporting
 
-The Word Search boards can be exported as a `.html` file containing an `html` table of the Word Search grid, a LaTeX matrix version of the Word Search grid, and the word search grid as a String. See `WordSearch.html` in this directory to see an example of this.
+The Word Search boards can be exported as a `.html` file containing an `html` table of the Word Search grid, a LaTeX matrix version of the Word Search grid, and the word search grid as a String. The solution is also in the `html` file. See `WordSearch.html` in this directory to see an example of this.
+
+## Dependencies
+
+* [Python 3.7+](https://www.python.org/)
+* [Pandas](https://pandas.pydata.org/)
