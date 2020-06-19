@@ -2,11 +2,14 @@
 
 This program creates Word Searches for you.
 
- | 
---- | ---
-<img src="Documentation/WordSearchBlank.PNG"> | <img src="Documentation/WordSearchEarth.PNG">
-<img src="Documentation/WordSearchSolution.PNG"> | <img src="Documentation/WordSearchSolutionReshuffled.PNG">
-<img src="Documentation/WordSearchNewWords.PNG"> | <img src="Documentation/WordSearchNewWordsSolution.PNG">
+<p align="center">
+    <img src="Documentation/WordSearchBlank.PNG" style="width: 50%">
+    <img src="Documentation/WordSearchEarth.PNG" style="width: 50%">
+    <img src="Documentation/WordSearchSolution.PNG" style="width: 50%">
+    <img src="Documentation/WordSearchSolutionReshuffled.PNG" style="width: 50%">
+    <img src="Documentation/WordSearchNewWords.PNG" style="width: 50%">
+    <img src="Documentation/WordSearchNewWordsSolution.PNG" style="width: 50%">
+</p>
 
 ## Usage
 
