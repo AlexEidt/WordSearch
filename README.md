@@ -2,11 +2,11 @@
 
 This program creates Word Searches for you.
 
-Images | Images
+ | 
 --- | ---
-<img src="Documentation/WordSearchBlank.png"> | <img src="Documentation/WordSearchEarth.png">
-<img src="Documentation/WordSearchSolution.png"> | <img src="Documentation/WordSearchSolutionReshuffled.png">
-<img src="Documentation/WordSearchNewWords.png"> | <img src="Documentation/WordSearchNewWordsSolution.png">
+<img src="Documentation/WordSearchBlank.PNG"> | <img src="Documentation/WordSearchEarth.PNG">
+<img src="Documentation/WordSearchSolution.PNG"> | <img src="Documentation/WordSearchSolutionReshuffled.PNG">
+<img src="Documentation/WordSearchNewWords.PNG"> | <img src="Documentation/WordSearchNewWordsSolution.PNG">
 
 ## Usage
 
@@ -18,7 +18,10 @@ python console.py
 ```
 
 <br>
+
 The following is an example of the console output:
+
+<br>
 <br>
 
 ```
