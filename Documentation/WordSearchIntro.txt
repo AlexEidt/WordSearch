@@ -1,8 +1,9 @@
 Welcome to the WordSearch creator!
-This program creates Word Search Puzzles for you.
+This program creates Word Search Puzzles.
 
 The menu has four buttons which perform the following functions:
-        1. New Words: Generate a new random set of words to search for
+        1. New Words: Generate a new random set of words to search for.
+        A text file containing words separated by newline characters called words.txt must be present in the current directory in order for this feature to work.
         2. Export: Creates a .html file containing the current Word Search grid as a HTML table, LaTeX Matrix and a String
         3. Solution: Show the location of each word on the Word Search board. Toggles on/off
         4. Reshuffle: Creates a new Word Search grid with the same words in new positions
@@ -13,7 +14,10 @@ Defaults -> Size: 16x16, Color: Yellow
 If you'd like to change the defaults, enter the desired values in the prompts below:
 Size (Return/Enter for Default):
 Check valid color options here: http://www.science.smith.edu/dftwiki/index.php/Color_Charts_for_TKinter
+Entering an invalid color option will break the program.
 Color (Return/Enter for Default):
+If you'd like to add a custom word list to replace words.txt, place the file in this directory and enter the file name below. Make sure words are separated by newline characters:
+New Words File Name (Return/Enter for Default):
 If you'd like to create a customized Word Search, enter the words below, one at a time:
 Next Word (Return/Enter to Quit/Stop): Mercury
 Next Word (Return/Enter to Quit/Stop): Venus
