@@ -49,11 +49,19 @@ class WordBoard:
         if self.words is None:
             self.choose_random_words()
         else:
-            self.words = list(set(words))
+            self.words = list(set(self.words))
         
+        # Create empty SIZExSIZE grid of buttons
         self.size = size
-        self.buttons = [[None for _ in range(self.size)] 
-                        for _ in range(self.size)]
+        self.buttons = []
+        for i in range(self.size):
+            row = []
+            for j in range(self.size):
+                row.append(tk.Button(
+                    self.word_grid, padx=5, command=partial(self.pressed, i, j)
+                ))
+                row[-1].grid(row=i, column=j, sticky='ew')
+            self.buttons.append(row)
         
         self.labels = {}
         self.word_search = WordSearch(self.size, self.words)
@@ -149,17 +157,10 @@ class WordBoard:
 
         for i in range(self.size):
             for j in range(self.size):
-                if self.buttons[i][j]:
-                    self.buttons[i][j].configure(
-                        text=self.word_search.board[i][j], bg='SystemButtonFace',
-                        state=tk.NORMAL
-                    )
-                else:
-                    self.buttons[i][j] = tk.Button(
-                        self.word_grid, text=self.word_search.board[i][j], 
-                        padx=5, command=partial(self.pressed, i, j)
-                    )
-                    self.buttons[i][j].grid(row=i, column=j, sticky='ew')
+                self.buttons[i][j].configure(
+                    text=self.word_search.board[i][j], bg='SystemButtonFace',
+                    state=tk.NORMAL
+                )
 
         for label in self.labels.values():
             label.configure(bg='SystemButtonFace')
