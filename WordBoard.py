@@ -17,15 +17,17 @@ class WordBoard:
     on the left side of the app as a grid of buttons that capture which words
     have been found. The right side of the GUI features a menu allowing the user
     to see the solutions, reshuffle the board, or create a new board with
-    completely new words (randomly chosen from words.txt). The user can also
+    completely new words (randomly chosen from words.txt/file_name). The user can also
     export the current board as an html file containing the board in html <table>,
     LaTeX and String form. This file also contains the solution.
     """
 
-    def __init__(self, size=16, color='yellow', words=None):
+    def __init__(self, size=16, color='yellow', file_name='words.txt', words=None):
         """
         Initializes a WordBoard GUI.
         """
+        assert size > 3, 'Size must be greater than 3'
+
         self.root = tk.Tk()
         self.root.title('Word Search')
         self.root.resizable(width=False, height=False)
@@ -37,10 +39,18 @@ class WordBoard:
         self.solution_shown = False
         self.size = size
         self.color = color
-
-        with open('words.txt', mode='r') as f:
-            self.wordstxt = f.read().split('\n')
-            self.wordstxt = list(filter(lambda x: len(x) < self.size - 3, self.wordstxt))
+        
+        # If file_name is not present in the current directory, the
+        # New Words button will be disabled.
+        new_words_button = tk.DISABLED
+        if file_name in os.listdir(os.getcwd()):
+            new_words_button = tk.NORMAL
+            with open(file_name, mode='r') as f:
+                self.wordstxt = filter(None, f.read().split('\n'))
+                self.wordstxt = list(filter(lambda x: len(x) < self.size - 3, self.wordstxt))
+        elif words is None:
+            raise FileNotFoundError(f'''{file_name} not present in the current directory. {file_name}
+                                    must contain words separated by newline (\\n) characters.''')
 
         # Buttons that have been pushed
         self.pushed = set()
@@ -71,7 +81,8 @@ class WordBoard:
         # Menu Buttons at the top right of the GUI
         menu_label = tk.Label(self.menu, text='Menu', pady=5, font=tkFont.Font(weight='bold'))
         menu_label.grid(row=0, column=0, columnspan=2, sticky='ew')
-        newwords_button = tk.Button(self.menu, text='New Words', padx=1, pady=1, command=self.select_new)
+        newwords_button = tk.Button(self.menu, text='New Words', padx=1, pady=1, state=new_words_button,
+                                    command=self.select_new)
         newwords_button.grid(row=1, column=0, sticky='ew')
         words_button = tk.Button(self.menu, text='Export', padx=1, pady=1, command=self.export)
         words_button.grid(row=1, column=1, sticky='ew')
@@ -81,7 +92,7 @@ class WordBoard:
         reshuffle_button.grid(row=2, column=1, sticky='ew')
 
         self.word_grid.pack(side=tk.LEFT)
-        self.menu.pack(side=tk.TOP, pady=20)
+        self.menu.pack(side=tk.TOP, pady=self.size)
         self.word_list.pack(side=tk.TOP, padx=40, pady=20)
 
         tk.mainloop()
@@ -102,7 +113,7 @@ class WordBoard:
     def choose_random_words(self):
         """
         Chooses a random number of words (proportional to the size of the board)
-        from the words.txt file.
+        from the file_name file.
         """
         self.words = []
         for _ in range(random.choice(range(self.size // 3, self.size))):
@@ -168,7 +179,7 @@ class WordBoard:
     def select_new(self):
         """
         Command for the "New Words" button. Chooses a new randoms set of
-        words from the words.txt file and fills up the board with the new
+        words from the file_name file and fills up the board with the new
         words and displays it in the GUI.
         """
         self.choose_random_words()
