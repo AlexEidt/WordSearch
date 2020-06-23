@@ -40,7 +40,6 @@ class WordSearch:
             f'Board Size {self._size} is too small.'
 
         shuffle(self._words)
-        #self.board = [[None] * self._size] * self._size
         self.board = [[None for _ in range(self._size)] for _ in range(self._size)]
         self.solutions = {}
 
