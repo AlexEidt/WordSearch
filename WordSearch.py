@@ -1,12 +1,19 @@
 """
 Implements a Word Search board given a list of words as a 2D Array.
+This class can be implemented on its own without WordBoard.py.
+
+After instantiation, the 2D Array containing all the letters of the board
+as well as the solutions can be accessed as follows:
+
+word_search = WordSearch()
+2d_board = word_search.board
+solutions = word_search.solutions
 
 Alex Eidt
 """
 
-import string
-import random
-import pandas as pd
+from random import choice, shuffle
+from pandas import DataFrame
 
 class WordSearch:
     """
@@ -18,29 +25,34 @@ class WordSearch:
     def __init__(self, size, words):
         """
         Initializes an instances of a WordSearch class.
+
+        Parameters
+            size: Size of the board. Board will always be a square of size x size letters
+            words: List of words to be hidden in the word search
         """
-        self.size = size
-        self.words = list(set(map(str.upper, words)))
+        self._size = size
+        self._words = list(set(map(str.upper, words)))
 
         # Check to see if the longest word in the words list is
         # less than the size of the board + 2 to ensure that
         # all words can be successfully placed on the board.
-        assert self.size - max(map(len, self.words)) > 2, \
-            f'Board Size {self.size} is too small.'
+        assert self._size - max(map(len, self._words)) > 2, \
+            f'Board Size {self._size} is too small.'
 
-        random.shuffle(self.words)
-        self.board = [[None for _ in range(self.size)] for _ in range(self.size)]
-        self.word_coords = {}
+        shuffle(self._words)
+        #self.board = [[None] * self._size] * self._size
+        self.board = [[None for _ in range(self._size)] for _ in range(self._size)]
+        self.solutions = {}
 
         # Fill the board with words
         check = False
         while not check:
-            self.init_board()
-            check = self.fill_with_words()
+            self._init_board()
+            check = self._fill_with_words()
 
-        self.fill_board()
+        self._fill_board()
         
-    def get_stats(self, word_len):
+    def _get_stats(self, word_len):
         """
         Gets the orientation and starting point of a word. "Stats"
         refers to the starting (x, y) coordinate and the steps (ox, oy)
@@ -55,35 +67,35 @@ class WordSearch:
             in the x and y direction.
         """
         starty = startx = 0
-        endy = endx = self.size
+        endy = endx = self._size
 
-        orient = random.choice(range(0, 4))
+        orient = choice(range(0, 4))
 
         if orient == 0: # Horizontal
             ox = 1
             oy = 0
-            endx = self.size - word_len # board columns - word_len
+            endx = self._size - word_len # board columns - word_len
         elif orient == 1: # Vertical Down
             ox = 0
             oy = 1
-            endy = self.size - word_len # board rows - word_len
+            endy = self._size - word_len # board rows - word_len
         elif orient == 2: # Upward Diagonal
             ox = 1
             oy = -1
             starty = word_len
-            endx = self.size - word_len # board columns - word_len
+            endx = self._size - word_len # board columns - word_len
         elif orient == 3: # Downward Diagonal
             ox = 1
             oy = 1
-            endy = self.size - word_len
-            endx = self.size - word_len # board columns - word_len
+            endy = self._size - word_len
+            endx = self._size - word_len # board columns - word_len
 
-        x = random.choice(range(startx, endx))
-        y = random.choice(range(starty, endy))
+        x = choice(range(startx, endx))
+        y = choice(range(starty, endy))
 
         return ox, oy, x, y
 
-    def check_board(self, word, x, y, ox, oy):
+    def _check_board(self, word, x, y, ox, oy):
         """
         Given a certain word with starting coordinates (x, y) and step
         size in the x and y direction (ox, oy), determines if it is
@@ -106,9 +118,10 @@ class WordSearch:
             if self.board[y_coord][x_coord] != letter and \
                 self.board[y_coord][x_coord]:
                 return False
+
         return True
 
-    def add_word(self, word):
+    def _add_word(self, word):
         """
         Adds a word to the Word Search board.
 
@@ -119,7 +132,7 @@ class WordSearch:
             False if the word could not be placed on the board (ran into
             infinite loop). True if the word can be placed on the board.
         """
-        ox, oy, x, y = self.get_stats(len(word))
+        ox, oy, x, y = self._get_stats(len(word))
         # Check to see if the randomly picked location from getStats is
         # viable for the given word. If not, it will continue to check
         # until a spot has been found.
@@ -131,40 +144,40 @@ class WordSearch:
         # arbitrarily choose a large number and check if the number
         # of iterations has exceeded it.
         count = 0
-        while not self.check_board(word, x, y, ox, oy):
-            ox, oy, x, y = self.get_stats(len(word))
+        while not self._check_board(word, x, y, ox, oy):
+            ox, oy, x, y = self._get_stats(len(word))
             count += 1
             # Check for infinite loop
             if count > 20000:
                 return False
         
-        self.word_coords[word] = set()
+        self.solutions[word] = set()
         for i, letter in enumerate(word):
             x_coord = x + i * ox
             y_coord = y + i * oy
             self.board[y_coord][x_coord] = letter
-            self.word_coords[word].add((letter, x_coord, y_coord))
+            self.solutions[word].add((letter, x_coord, y_coord))
 
         return True
 
-    def fill_board(self):
+    def _fill_board(self):
         """
         Fills all empty locations of the board with random letters.
         """
-        for i in range(self.size):
-            for j in range(self.size):
+        for i in range(self._size):
+            for j in range(self._size):
                 if not self.board[i][j]:
-                    self.board[i][j] = random.choice(string.ascii_uppercase)
+                    self.board[i][j] = choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
-    def init_board(self):
+    def _init_board(self):
         """
         Initializes every location of the board to be None.
         """
-        for i in range(self.size):
-            for j in range(self.size):
+        for i in range(self._size):
+            for j in range(self._size):
                 self.board[i][j] = None
 
-    def fill_with_words(self):
+    def _fill_with_words(self):
         """
         Fills the board with the given list of words.
 
@@ -172,18 +185,19 @@ class WordSearch:
             False if one of the words could not be added to the board.
             True if all words have been successfully added to the board.
         """
-        for word in self.words:
-            check = self.add_word(word)
+        for word in self._words:
+            check = self._add_word(word)
             if not check:
                 return False
+
         return True
 
     def __repr__(self):
-        return f'''{pd.DataFrame(self.board).to_string()}
-            \nSize: {self.size}x{self.size}
-            \nWords: {self.words}
-            \nNumber of Words: {len(self.words)}    
+        return f'''{DataFrame(self.board).to_string()}
+            \nSize: {self._size}x{self._size}
+            \nWords: {self._words}
+            \nNumber of Words: {len(self._words)}    
         '''
 
     def __str__(self):
-        return pd.DataFrame(self.board).to_string(index=False, header=False)
+        return DataFrame(self.board).to_string(index=False, header=False)
