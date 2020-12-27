@@ -13,7 +13,6 @@ Alex Eidt
 """
 
 from random import choice, shuffle
-from pandas import DataFrame
 
 class WordSearch:
     """
@@ -41,6 +40,9 @@ class WordSearch:
 
         shuffle(self._words)
         self.board = [[None for _ in range(self._size)] for _ in range(self._size)]
+
+        # Solutions is a mapping of words hidden in the board to a set of coordinates
+        # of each letter in these words
         self.solutions = {}
 
         # Fill the board with words
@@ -51,10 +53,10 @@ class WordSearch:
 
         self._fill_board()
         
-    def _get_stats(self, word_len):
+    def _get_orientation(self, word_len):
         """
-        Gets the orientation and starting point of a word. "Stats"
-        refers to the starting (x, y) coordinate and the steps (ox, oy)
+        Gets the orientation and starting point of a word.
+        Refers to the starting (x, y) coordinate and the steps (ox, oy)
         for a given word.
 
         Parameters
@@ -92,7 +94,7 @@ class WordSearch:
         x = choice(range(startx, endx))
         y = choice(range(starty, endy))
 
-        return ox, oy, x, y
+        return x, y, ox, oy
 
     def _check_board(self, word, x, y, ox, oy):
         """
@@ -131,7 +133,7 @@ class WordSearch:
             False if the word could not be placed on the board (ran into
             infinite loop). True if the word can be placed on the board.
         """
-        ox, oy, x, y = self._get_stats(len(word))
+        x, y, ox, oy = self._get_orientation(len(word))
         # Check to see if the randomly picked location from getStats is
         # viable for the given word. If not, it will continue to check
         # until a spot has been found.
@@ -144,7 +146,7 @@ class WordSearch:
         # of iterations has exceeded it.
         count = 0
         while not self._check_board(word, x, y, ox, oy):
-            ox, oy, x, y = self._get_stats(len(word))
+            x, y, ox, oy = self._get_orientation(len(word))
             count += 1
             # Check for infinite loop
             if count > 20000:
@@ -191,12 +193,18 @@ class WordSearch:
 
         return True
 
-    def __repr__(self):
-        return f'''{DataFrame(self.board).to_string()}
-            \nSize: {self._size}x{self._size}
-            \nWords: {self._words}
-            \nNumber of Words: {len(self._words)}    
-        '''
+    def __len__(self):
+        """
+        Returns the length of one side of the board.
+        """
+        return self._size
 
     def __str__(self):
-        return DataFrame(self.board).to_string(index=False, header=False)
+        """
+        Returns Word Search Board as a String.
+        """
+        output = []
+        for i in range(self._size):
+            output.append(' '.join(self.board[i]))
+
+        return '\n'.join(output)

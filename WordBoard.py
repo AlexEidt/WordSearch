@@ -77,7 +77,6 @@ class WordBoard:
             self._words = list(set(map(str.upper, self._words)))
         
         # Create empty SIZExSIZE grid of buttons
-        self._size = size
         self._buttons = []
         for i in range(self._size):
             row = []
@@ -175,6 +174,7 @@ class WordBoard:
         if self._solution_shown:
             bg = 'SystemButtonFace'
             state = tk.NORMAL
+            self._pushed.clear()
         else:
             bg = self._color
             state = tk.DISABLED

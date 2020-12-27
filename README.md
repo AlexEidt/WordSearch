@@ -65,4 +65,3 @@ The Word Search boards can be exported as a `.html` file containing an `html` ta
 ## Dependencies
 
 * [Python 3.7+](https://www.python.org/)
-* [Pandas](https://pandas.pydata.org/)
