@@ -2,13 +2,7 @@
 
 This program creates Word Searches.
 
-Blank Word Search | Word Search Partially Filled Out
-:---: | :---:
-<img src="Documentation/WordSearchBlank.PNG" style="width: 50%"> | <img src="Documentation/WordSearchEarth.PNG" style="width: 50%">
-**Word Search with Solution Shown** | **Word Search with Words Reshuffled**
-<img src="Documentation/WordSearchSolution.PNG" style="width: 50%"> | <img src="Documentation/WordSearchSolutionReshuffled.PNG" style="width: 50%">
-**Word Search with New Random Words** | **New Random Words Solution Shown**
-<img src="Documentation/WordSearchNewWords.PNG" style="width: 50%"> | <img src="Documentation/WordSearchNewWordsSolution.PNG" style="width: 50%">
+<img src="Documentation/wordsearch.gif" alt="Word Search Demo" />
 
 ## Usage
 
@@ -60,7 +54,7 @@ Next Word (Return/Enter to Quit/Stop):
 
 ## Exporting
 
-The Word Search boards can be exported as a `.html` file containing an `html` table of the Word Search grid, a LaTeX matrix version of the Word Search grid, and the word search grid as a String. The solution is also in the `html` file. See `WordSearch.html` in this directory to see an example of this.
+The Word Search boards can be exported as a `.html` file containing an `html` table of the Word Search grid, a LaTeX matrix version of the Word Search grid, and the word search grid as a String. The solution is also in the `html` file.
 
 ## Dependencies
 
