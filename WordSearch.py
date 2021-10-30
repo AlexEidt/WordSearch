@@ -203,8 +203,4 @@ class WordSearch:
         """
         Returns Word Search Board as a String.
         """
-        output = []
-        for i in range(self._size):
-            output.append(' '.join(self.board[i]))
-
-        return '\n'.join(output)
+        return '\n'.join([' '.join(row) for row in self.board])
