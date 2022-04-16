@@ -14,6 +14,7 @@ Alex Eidt
 
 from random import choice, shuffle
 
+
 class WordSearch:
     """
     The WordSearch class abstracts a Word Search board as a 2D array
@@ -35,8 +36,9 @@ class WordSearch:
         # Check to see if the longest word in the words list is
         # less than the size of the board + 2 to ensure that
         # all words can be successfully placed on the board.
-        assert self._size - max(map(len, self._words)) > 2, \
-            f'Board Size {self._size} is too small.'
+        assert (
+            self._size - max(map(len, self._words)) > 2
+        ), f"Board Size {self._size} is too small."
 
         shuffle(self._words)
         self.board = [[None for _ in range(self._size)] for _ in range(self._size)]
@@ -52,7 +54,7 @@ class WordSearch:
             check = self._fill_with_words()
 
         self._fill_board()
-        
+
     def _get_orientation(self, word_len):
         """
         Gets the orientation and starting point of a word.
@@ -72,24 +74,24 @@ class WordSearch:
 
         orient = choice(range(0, 4))
 
-        if orient == 0: # Horizontal
+        if orient == 0:  # Horizontal
             ox = 1
             oy = 0
-            endx = self._size - word_len # board columns - word_len
-        elif orient == 1: # Vertical Down
+            endx = self._size - word_len  # board columns - word_len
+        elif orient == 1:  # Vertical Down
             ox = 0
             oy = 1
-            endy = self._size - word_len # board rows - word_len
-        elif orient == 2: # Upward Diagonal
+            endy = self._size - word_len  # board rows - word_len
+        elif orient == 2:  # Upward Diagonal
             ox = 1
             oy = -1
             starty = word_len
-            endx = self._size - word_len # board columns - word_len
-        elif orient == 3: # Downward Diagonal
+            endx = self._size - word_len  # board columns - word_len
+        elif orient == 3:  # Downward Diagonal
             ox = 1
             oy = 1
             endy = self._size - word_len
-            endx = self._size - word_len # board columns - word_len
+            endx = self._size - word_len  # board columns - word_len
 
         x = choice(range(startx, endx))
         y = choice(range(starty, endy))
@@ -116,8 +118,7 @@ class WordSearch:
         for i, letter in enumerate(word):
             x_coord = x + i * ox
             y_coord = y + i * oy
-            if self.board[y_coord][x_coord] != letter and \
-                self.board[y_coord][x_coord]:
+            if self.board[y_coord][x_coord] != letter and self.board[y_coord][x_coord]:
                 return False
 
         return True
@@ -151,7 +152,7 @@ class WordSearch:
             # Check for infinite loop
             if count > 20000:
                 return False
-        
+
         self.solutions[word] = set()
         for i, letter in enumerate(word):
             x_coord = x + i * ox
@@ -168,7 +169,7 @@ class WordSearch:
         for i in range(self._size):
             for j in range(self._size):
                 if not self.board[i][j]:
-                    self.board[i][j] = choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+                    self.board[i][j] = choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     def _init_board(self):
         """
@@ -203,4 +204,4 @@ class WordSearch:
         """
         Returns Word Search Board as a String.
         """
-        return '\n'.join([' '.join(row) for row in self.board])
+        return "\n".join([" ".join(row) for row in self.board])
